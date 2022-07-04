@@ -1,4 +1,4 @@
-package com.bili.tech.yilimusic;
+package com.bilitech.yilimusic;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
