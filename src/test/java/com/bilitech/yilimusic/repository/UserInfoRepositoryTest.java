@@ -15,25 +15,4 @@ import java.util.Date;
  */
 @SpringBootTest
 class UserInfoRepositoryTest {
-
-    @Autowired
-    UserRepository repository;
-
-    @Test
-    void testUser() {
-        User user = new User();
-        user.setUsername("xm");
-        user.setNickname("程序员xm");
-        user.setEnabled(true);
-        user.setLocked(false);
-        user.setPassword("123456");
-        user.setGender(Gender.MALE);
-        user.setLastLoginIp("127.0.0.1");
-        user.setLastLoginTime(new Timestamp(new Date().getTime()));
-
-        User savedUser = repository.save(user);
-        User res = repository.getByUsername("xm");
-        System.out.println(savedUser);
-        System.out.println(res);
-    }
 }
