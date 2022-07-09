@@ -1,6 +1,6 @@
 package com.bilitech.yilimusic.repository;
 
-import com.bilitech.yilimusic.entity.UserInfo;
+import com.bilitech.yilimusic.entity.User;
 import com.bilitech.yilimusic.enums.Gender;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +21,19 @@ class UserInfoRepositoryTest {
 
     @Test
     void testUser() {
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUsername("xm");
-        userInfo.setNickname("程序员xm");
-        userInfo.setEnabled(true);
-        userInfo.setLocked(false);
-        userInfo.setPassword("123456");
-        userInfo.setGender(Gender.MALE);
-        userInfo.setLastLoginIp("127.0.0.1");
-        userInfo.setLastLoginTime(new Timestamp(new Date().getTime()));
+        User user = new User();
+        user.setUsername("xm");
+        user.setNickname("程序员xm");
+        user.setEnabled(true);
+        user.setLocked(false);
+        user.setPassword("123456");
+        user.setGender(Gender.MALE);
+        user.setLastLoginIp("127.0.0.1");
+        user.setLastLoginTime(new Timestamp(new Date().getTime()));
 
-        UserInfo savedUserInfo = repository.save(userInfo);
-        UserInfo res = repository.getByUsername("xm");
-        System.out.println(savedUserInfo);
+        User savedUser = repository.save(user);
+        User res = repository.getByUsername("xm");
+        System.out.println(savedUser);
         System.out.println(res);
     }
 }
