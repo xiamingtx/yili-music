@@ -1,6 +1,5 @@
 package com.bilitech.yilimusic.vo;
 
-import com.bilitech.yilimusic.entity.RoleInfo;
 import lombok.Data;
 
 import java.util.List;
