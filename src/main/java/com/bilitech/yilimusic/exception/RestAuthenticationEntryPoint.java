@@ -1,6 +1,7 @@
 package com.bilitech.yilimusic.exception;
 
 import cn.hutool.json.JSONUtil;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,8 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.setHeader("Cache-Control","no-cache");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
+        response.setStatus(HttpStatus.UNAUTHORIZED.value()); // 设置HTTP响应码401
+
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionType.UNAUTHORIZED.getCode());
         errorResponse.setMessage(ExceptionType.UNAUTHORIZED.getMessage());
