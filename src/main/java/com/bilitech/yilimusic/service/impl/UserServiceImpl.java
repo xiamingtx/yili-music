@@ -1,7 +1,8 @@
 package com.bilitech.yilimusic.service.impl;
 
-import com.bilitech.yilimusic.dto.UserCreateDto;
+import com.bilitech.yilimusic.dto.UserCreateRequest;
 import com.bilitech.yilimusic.dto.UserDto;
+import com.bilitech.yilimusic.dto.UserUpdateRequest;
 import com.bilitech.yilimusic.entity.User;
 import com.bilitech.yilimusic.exception.BizException;
 import com.bilitech.yilimusic.exception.ExceptionType;
@@ -9,13 +10,12 @@ import com.bilitech.yilimusic.mapper.UserMapper;
 import com.bilitech.yilimusic.repository.UserRepository;
 import com.bilitech.yilimusic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * @author 夏明
@@ -31,14 +31,9 @@ public class UserServiceImpl implements UserService {
     PasswordEncoder passwordEncoder;
 
     @Override
-    public List<UserDto> list() {
-        return repository.findAll().stream().map(mapper::toDto).collect(Collectors.toList());
-    }
-
-    @Override
-    public UserDto create(UserCreateDto userCreateDto) {
-        checkUserName(userCreateDto.getUsername());
-        User user = mapper.createEntity(userCreateDto);
+    public UserDto create(UserCreateRequest userCreateRequest) {
+        checkUserName(userCreateRequest.getUsername());
+        User user = mapper.createEntity(userCreateRequest);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return mapper.toDto(repository.save(user));
     }
@@ -50,6 +45,39 @@ public class UserServiceImpl implements UserService {
             throw new BizException(ExceptionType.USER_NOT_FOUND);
         }
         return user.get();
+    }
+
+    @Override
+    public UserDto get(String id) {
+        Optional<User> user = repository.findById(id);
+        if (!user.isPresent()) {
+            throw new BizException(ExceptionType.USER_NOT_FOUND);
+        }
+        return mapper.toDto(user.get());
+    }
+
+    @Override
+    public UserDto update(String id, UserUpdateRequest userUpdateRequest) {
+        Optional<User> user = repository.findById(id);
+        if (!user.isPresent()) {
+            throw new BizException(ExceptionType.USER_NOT_FOUND);
+        }
+        return mapper.toDto(repository.save(mapper.updateEntity(user.get(), userUpdateRequest)));
+    }
+
+    @Override
+    public void delete(String id) {
+        // Todo: 重构
+        Optional<User> user = repository.findById(id);
+        if (!user.isPresent()) {
+            throw new BizException(ExceptionType.USER_NOT_FOUND);
+        }
+        repository.delete(user.get());
+    }
+
+    @Override
+    public Page<UserDto> search(Pageable pageable) {
+        return repository.findAll(pageable).map(mapper::toDto);
     }
 
     private void checkUserName(String username) {
