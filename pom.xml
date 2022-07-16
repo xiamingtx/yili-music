@@ -46,33 +46,32 @@
         </dependency>
         <dependency>
             <!--            5.7不适用 高版本用flyway-mysql-->
-            <!--            <groupId>org.flywaydb</groupId>-->
-            <!--            <artifactId>flyway-mysql</artifactId>-->
             <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>7.7.3</version>
+            <artifactId>flyway-mysql</artifactId>
+            <!--            <groupId>org.flywaydb</groupId>-->
+            <!--            <artifactId>flyway-core</artifactId>-->
+            <!--            <version>7.7.3</version>-->
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.ksuid</groupId>
             <artifactId>ksuid</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>1.4.2.Final</version>
+            <version>1.5.1.Final</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
-            <version>1.4.2.Final</version>
+            <version>1.5.1.Final</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -93,6 +92,11 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>4.3.5.B</version>
         </dependency>
     </dependencies>
 
