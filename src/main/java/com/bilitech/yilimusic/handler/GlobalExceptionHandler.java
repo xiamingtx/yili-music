@@ -21,6 +21,7 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = BizException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse bizExceptionHandler(BizException e) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(e.getCode());
@@ -30,6 +31,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(value = Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse exceptionHandler(Exception e) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionType.INNER_ERROR.getCode());

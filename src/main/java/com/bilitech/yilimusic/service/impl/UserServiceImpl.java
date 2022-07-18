@@ -56,21 +56,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto update(String id, UserUpdateRequest userUpdateRequest) {
-        Optional<User> user = repository.findById(id);
-        if (!user.isPresent()) {
-            throw new BizException(ExceptionType.USER_NOT_FOUND);
-        }
-        return mapper.toDto(repository.save(mapper.updateEntity(user.get(), userUpdateRequest)));
+        User user = getUser(id);
+        return mapper.toDto(repository.save(mapper.updateEntity(user, userUpdateRequest)));
     }
 
     @Override
     public void delete(String id) {
-        // Todo: 重构
+        User user = getUser(id);
+        repository.delete(user);
+    }
+
+    private User getUser(String id) {
         Optional<User> user = repository.findById(id);
         if (!user.isPresent()) {
             throw new BizException(ExceptionType.USER_NOT_FOUND);
         }
-        repository.delete(user.get());
+        return user.get();
     }
 
     @Override
