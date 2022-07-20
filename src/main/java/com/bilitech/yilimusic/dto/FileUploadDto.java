@@ -11,11 +11,13 @@ public class FileUploadDto {
 
     private String secretId;
 
-    private String secreteKey;
+    private String secretKey;
 
     private String sessionToken;
 
     private String key;
+
+    private String fileId;
 
     private String bucket;
 

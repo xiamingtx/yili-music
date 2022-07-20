@@ -10,9 +10,7 @@ import java.util.List;
  * @version 1.0
  */
 @Data
-public class UserVo {
-
-    private String id;
+public class UserVo extends BaseVo {
 
     private String username;
 
