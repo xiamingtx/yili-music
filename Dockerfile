@@ -20,6 +20,12 @@ ENV MYSQL_USER_NAME music
 ENV MYSQL_PASSWORD Music2022
 ENV DATABASE_NAME yili-music
 ENV APPLICATION_PORT 80
+ENV MP_APP_ID wxa576489fc23023c3
+ENV MP_APP_SECRET 455d9a93074137a5523d9e5236b4580a
+ENV COS_BUCKET yili-music-20220720-1312725977
+ENV COS_SECRET_ID AKIDMYT8YhaCXbPwCCuLVO1MQDjzxe5F8j48
+ENV COS_SECRET_KEY oLbbKmwhDSR9cojNkqfDUUEhuqYz94h3
+ENV COS_REGION ap-beijing
 
 # 安装依赖包，如需其他依赖包，请到alpine依赖包管理(https://pkgs.alpinelinux.org/packages?name=php8*imagick*&branch=v3.13)查找。
 RUN apk add --update --no-cache openjdk8-jre-base \
