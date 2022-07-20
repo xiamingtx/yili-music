@@ -35,13 +35,13 @@ public class CosStorageServiceImpl implements StorageService {
     public FileUploadDto initUpload() {
 
         try {
-            Response Response = CosStsClient.getCredential(getCosStsConfig());
+            Response response = CosStsClient.getCredential(getCosStsConfig());
             FileUploadDto fileUploadDto = new FileUploadDto();
-            fileUploadDto.setBucket(bucket);
-            fileUploadDto.setRegion(region);
-            fileUploadDto.setSecretId(Response.credentials.tmpSecretId);
-            fileUploadDto.setSecretKey(Response.credentials.tmpSecretKey);
-            fileUploadDto.setSessionToken(Response.credentials.sessionToken);
+            fileUploadDto.setSecretId(response.credentials.tmpSecretId);
+            fileUploadDto.setSecretKey(response.credentials.tmpSecretKey);
+            fileUploadDto.setSessionToken(response.credentials.sessionToken);
+            fileUploadDto.setStartTime(response.startTime);
+            fileUploadDto.setExpiredTime(response.expiredTime);
             return fileUploadDto;
         } catch (IOException e) {
             e.printStackTrace();

@@ -19,7 +19,7 @@ public class FileUploadDto {
 
     private String fileId;
 
-    private String bucket;
+    private Long startTime;
 
-    private String region;
+    private Long expiredTime;
 }

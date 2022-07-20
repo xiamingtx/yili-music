@@ -3,6 +3,7 @@ package com.bilitech.yilimusic.handler;
 import com.bilitech.yilimusic.exception.BizException;
 import com.bilitech.yilimusic.exception.ErrorResponse;
 import com.bilitech.yilimusic.exception.ExceptionType;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,6 +19,7 @@ import java.util.List;
  * @version 1.0
  */
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = BizException.class)
@@ -27,6 +29,8 @@ public class GlobalExceptionHandler {
         errorResponse.setCode(e.getCode());
         errorResponse.setMessage(e.getMessage());
         errorResponse.setTrace(e.getStackTrace());
+        e.printStackTrace();
+        log.error(e.getMessage());
         return errorResponse;
     }
 
@@ -36,6 +40,8 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionType.INNER_ERROR.getCode());
         errorResponse.setMessage(ExceptionType.INNER_ERROR.getMessage());
+        e.printStackTrace();
+        log.error(e.getMessage());
         return errorResponse;
     }
 
@@ -45,6 +51,8 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionType.FORBIDDEN.getCode());
         errorResponse.setMessage(ExceptionType.FORBIDDEN.getMessage());
+        e.printStackTrace();
+        log.error(e.getMessage());
         return errorResponse;
     }
 
@@ -52,11 +60,14 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public List<ErrorResponse> bizExceptionHandler(MethodArgumentNotValidException e) {
         List<ErrorResponse> errorResponses = new ArrayList<>();
+        e.printStackTrace();
+
         e.getBindingResult().getAllErrors().forEach((error) -> {
             ErrorResponse errorResponse = new ErrorResponse();
             errorResponse.setCode(ExceptionType.BAD_REQUEST.getCode());
             errorResponse.setMessage(error.getDefaultMessage());
             errorResponses.add(errorResponse);
+            log.error(error.getDefaultMessage());
         });
         return errorResponses;
     }

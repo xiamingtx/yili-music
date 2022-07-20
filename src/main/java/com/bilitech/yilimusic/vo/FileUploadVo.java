@@ -11,7 +11,7 @@ public class FileUploadVo {
 
     private String secretId;
 
-    private String secreteKey;
+    private String secretKey;
 
     private String sessionToken;
 
@@ -19,7 +19,7 @@ public class FileUploadVo {
 
     private String fileId;
 
-    private String bucket;
+    private Long startTime;
 
-    private String region;
+    private Long expiredTime;
 }
