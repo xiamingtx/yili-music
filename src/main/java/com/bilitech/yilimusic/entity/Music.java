@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
 
 /**
  * @author 夏明
@@ -20,4 +21,7 @@ public class Music extends AbstractEntity {
     private MusicStatus status;
 
     private String description;
+
+    @OneToOne
+    private File file;
 }
