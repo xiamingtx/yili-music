@@ -16,7 +16,7 @@ import javax.persistence.Enumerated;
  */
 @Entity
 @Data
-public class File extends AbstractEntity {
+public class File extends TraceableBaseEntity {
 
     private String name;
 

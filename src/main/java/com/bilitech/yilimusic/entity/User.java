@@ -19,7 +19,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class User extends AbstractEntity implements UserDetails {
+public class User extends BaseEntity implements UserDetails {
 
     @Column(unique = true)
     private String username;
