@@ -18,7 +18,7 @@ import org.springframework.security.test.context.support.WithMockUser;
  */
 @SpringBootTest
 @Slf4j
-class FileServiceTest extends BaseService {
+class FileTestTest extends BaseTest {
 
     private FileService fileService;
 

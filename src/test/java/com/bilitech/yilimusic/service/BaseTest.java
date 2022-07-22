@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @version 1.0
  */
 @SpringBootTest
-public abstract class BaseService {
+public abstract class BaseTest {
 
     @Autowired
     UserService userService;
@@ -25,5 +25,4 @@ public abstract class BaseService {
         userCreateRequest.setGender(Gender.MALE);
         userService.create(userCreateRequest);
     }
-
 }

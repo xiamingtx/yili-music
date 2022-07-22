@@ -3,7 +3,6 @@ package com.bilitech.yilimusic.dto;
 import com.bilitech.yilimusic.enums.PlayListStatus;
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,9 +10,7 @@ import java.util.List;
  * @version 1.0
  */
 @Data
-public class PlaylistDto {
-
-    private String id;
+public class PlaylistDto extends BaseDto {
 
     private String name;
 
@@ -26,8 +23,4 @@ public class PlaylistDto {
     private UserDto creator;
 
     private List<MusicDto> musicList;
-
-    private Date createdTime;
-
-    private Date updatedTime;
 }
