@@ -20,6 +20,8 @@ public class FileDto {
 
     private String key;
 
+    private String uri;
+
     private String ext;
 
     private Long size;

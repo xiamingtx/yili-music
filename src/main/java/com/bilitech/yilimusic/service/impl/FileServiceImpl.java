@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -59,7 +60,7 @@ public class FileServiceImpl extends BaseService implements FileService {
         }
         File file = fileOptional.get();
         // Todo: 是否是SUPER_ADMIN
-        if (file.getCreatedBy() != getCurrentUserEntity()) {
+        if (!Objects.equals(file.getCreatedBy().getId(), getCurrentUserEntity().getId())) {
             throw new BizException(ExceptionType.FILE_NOT_PERMITTED);
         }
 

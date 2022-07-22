@@ -1,5 +1,6 @@
 package com.bilitech.yilimusic.dto;
 
+import com.bilitech.yilimusic.enums.Gender;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -21,6 +22,6 @@ public class UserCreateRequest {
     private String password;
 
     private String nickname;
-    
-    private String gender;
+
+    private Gender gender;
 }

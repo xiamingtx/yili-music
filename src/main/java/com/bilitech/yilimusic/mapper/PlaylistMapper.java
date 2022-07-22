@@ -9,7 +9,7 @@ import org.mapstruct.Mapper;
  * @author 夏明
  * @version 1.0
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = MusicMapper.class)
 public interface PlaylistMapper {
 
     PlaylistDto toDto(Playlist playlist);

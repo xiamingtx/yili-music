@@ -8,4 +8,6 @@ import com.bilitech.yilimusic.dto.FileUploadDto;
  */
 public interface StorageService {
     public FileUploadDto initUpload();
+
+    String getFileUri(String fileKey);
 }
