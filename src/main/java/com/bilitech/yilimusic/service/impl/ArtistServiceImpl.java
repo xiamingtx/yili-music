@@ -14,6 +14,7 @@ import com.bilitech.yilimusic.service.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +35,7 @@ public class ArtistServiceImpl extends BaseService implements ArtistService {
     private FileService fileService;
 
     @Override
+    @Transactional
     public ArtistDto create(ArtistCreateRequest artistCreateRequest) {
         Artist artist = mapper.createEntity(artistCreateRequest);
         artist.setPhoto(fileService.getFileEntity(artistCreateRequest.getPhotoId()));
