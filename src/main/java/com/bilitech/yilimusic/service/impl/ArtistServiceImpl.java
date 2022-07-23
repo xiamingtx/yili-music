@@ -10,6 +10,7 @@ import com.bilitech.yilimusic.exception.ExceptionType;
 import com.bilitech.yilimusic.mapper.ArtistMapper;
 import com.bilitech.yilimusic.repository.ArtistRepository;
 import com.bilitech.yilimusic.service.ArtistService;
+import com.bilitech.yilimusic.service.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,12 @@ public class ArtistServiceImpl extends BaseService implements ArtistService {
 
     private ArtistRepository repository;
 
+    private FileService fileService;
+
     @Override
     public ArtistDto create(ArtistCreateRequest artistCreateRequest) {
         Artist artist = mapper.createEntity(artistCreateRequest);
+        artist.setPhoto(fileService.getFileEntity(artistCreateRequest.getPhotoId()));
         artist.setStatus(ArtistStatus.DRAFT);
         artist.setCreatedBy(getCurrentUserEntity());
         artist.setUpdatedBy(getCurrentUserEntity());
@@ -46,6 +50,7 @@ public class ArtistServiceImpl extends BaseService implements ArtistService {
             throw new BizException(ExceptionType.ARTIST_NOT_FOUND);
         }
         Artist artist = mapper.updateEntity(artistOptional.get(), artistUpdateRequest);
+        artist.setPhoto(fileService.getFileEntity(artistUpdateRequest.getPhotoId()));
         return mapper.toDto(repository.save(artist));
     }
 
@@ -62,5 +67,10 @@ public class ArtistServiceImpl extends BaseService implements ArtistService {
     @Autowired
     public void setRepository(ArtistRepository repository) {
         this.repository = repository;
+    }
+
+    @Autowired
+    public void setFileService(FileService fileService) {
+        this.fileService = fileService;
     }
 }

@@ -6,6 +6,7 @@ import com.bilitech.yilimusic.mapper.ArtistMapper;
 import com.bilitech.yilimusic.service.ArtistService;
 import com.bilitech.yilimusic.vo.ArtistVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,8 @@ public class ArtistController {
 
     private ArtistMapper artistMapper;
 
-    @PostMapping()
+    @PostMapping
+    @Transactional
     public ArtistVo create(@Validated @RequestBody ArtistCreateRequest artistCreateRequest) {
         return artistMapper.toVo(artistService.create(artistCreateRequest));
     }

@@ -1,6 +1,5 @@
 package com.bilitech.yilimusic.vo;
 
-import com.bilitech.yilimusic.dto.FileDto;
 import com.bilitech.yilimusic.enums.ArtistStatus;
 import lombok.Data;
 
@@ -16,7 +15,7 @@ public class ArtistVo extends BaseVo {
 
     private String remark;
 
-    private FileDto photo;
+    private FileVo photo;
 
     private List<MusicVo> musicList;
 

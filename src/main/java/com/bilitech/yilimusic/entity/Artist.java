@@ -18,7 +18,7 @@ public class Artist extends TraceableBaseEntity {
 
     private String remark;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private File photo;
 
     @ManyToMany

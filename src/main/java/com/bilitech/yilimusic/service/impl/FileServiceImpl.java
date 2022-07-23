@@ -54,11 +54,7 @@ public class FileServiceImpl extends BaseService implements FileService {
 
     @Override
     public FileDto finishUpload(String id) {
-        Optional<File> fileOptional = repository.findById(id);
-        if (!fileOptional.isPresent()) {
-            throw new BizException(ExceptionType.FILE_NOT_FOUND);
-        }
-        File file = fileOptional.get();
+        File file = getFileEntity(id);
         // Todo: 是否是SUPER_ADMIN
         if (!Objects.equals(file.getCreatedBy().getId(), getCurrentUserEntity().getId())) {
             throw new BizException(ExceptionType.FILE_NOT_PERMITTED);
@@ -70,6 +66,16 @@ public class FileServiceImpl extends BaseService implements FileService {
         file.setStatus(FileStatus.UPLOADED);
         return mapper.toDto(repository.save(file));
     }
+
+    @Override
+    public File getFileEntity(String id) {
+        Optional<File> fileOptional = repository.findById(id);
+        if (!fileOptional.isPresent()) {
+            throw new BizException(ExceptionType.FILE_NOT_FOUND);
+        }
+        return fileOptional.get();
+    }
+
 
     // Todo: 后台设置当前Storage
     public Storage getDefaultStorage() {
