@@ -10,7 +10,7 @@ import java.util.List;
  * @version 1.0
  */
 @Data
-public class ArtistDto extends BaseDto {
+public class ArtistDto extends TraceableBaseDto {
 
     private String name;
 

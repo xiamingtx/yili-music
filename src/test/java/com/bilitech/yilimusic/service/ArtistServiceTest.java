@@ -1,6 +1,8 @@
 package com.bilitech.yilimusic.service;
 
 import com.bilitech.yilimusic.dto.*;
+import com.bilitech.yilimusic.mapper.ArtistMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +15,7 @@ import org.springframework.security.test.context.support.WithMockUser;
  * @version 1.0
  */
 @SpringBootTest
+@Slf4j
 class ArtistServiceTest extends BaseTest {
 
     @Autowired
@@ -20,6 +23,9 @@ class ArtistServiceTest extends BaseTest {
 
     @Autowired
     FileService fileService;
+
+    @Autowired
+    ArtistMapper artistMapper;
 
     private String photoId;
 
@@ -30,9 +36,10 @@ class ArtistServiceTest extends BaseTest {
         artistCreateRequest.setName("周杰伦");
         artistCreateRequest.setRemark("Jay Chou");
         artistCreateRequest.setPhotoId(photoId);
-        ArtistDto artistDto = artistService.create(artistCreateRequest);
+        ArtistDto artistDto = artistService.create(artistMapper.toDto(artistCreateRequest));
         Assertions.assertEquals(artistCreateRequest.getName(), artistDto.getName());
         Assertions.assertEquals(artistCreateRequest.getRemark(), artistDto.getRemark());
+        Assertions.assertEquals("yili", artistDto.getCreatedBy().getUsername());
     }
 
     @BeforeEach

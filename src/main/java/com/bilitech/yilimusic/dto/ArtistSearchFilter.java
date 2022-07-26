@@ -7,6 +7,6 @@ import lombok.Data;
  * @version 1.0
  */
 @Data
-public class MusicSearchFilter extends BaseSearchFilter {
+public class ArtistSearchFilter extends BaseSearchFilter {
     private String name = "";
 }

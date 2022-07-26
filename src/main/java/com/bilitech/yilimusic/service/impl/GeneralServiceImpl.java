@@ -14,16 +14,16 @@ import java.util.Optional;
  * @author 夏明
  * @version 1.0
  */
-public abstract class GeneralServiceImpl<Entity extends BaseEntity, Dto extends BaseDto> implements GeneralService<Entity, Dto> {
+public abstract class GeneralServiceImpl<Entity extends BaseEntity, Dto extends BaseDto> extends BaseService implements GeneralService<Entity, Dto> {
 
     @Override
     public Dto create(Dto dto) {
-        return getMapper().toDto(getRepository().save(getMapper().toEntity(dto)));
+        Entity entity = getMapper().toEntity(dto);
+        return getMapper().toDto(getRepository().save(entity));
     }
 
     @Override
     public Dto get(String id) {
-
         return getMapper().toDto(getEntity(id));
     }
 

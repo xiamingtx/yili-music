@@ -3,6 +3,8 @@ package com.bilitech.yilimusic.dto;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 /**
  * @author 夏明
@@ -15,4 +17,9 @@ public class MusicUpdateRequest {
     private String name;
 
     private String description;
+
+    private String fileId;
+
+    @NotEmpty(message = "歌手未选择")
+    private List<String> artistIds;
 }

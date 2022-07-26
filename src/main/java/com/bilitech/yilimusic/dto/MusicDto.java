@@ -4,6 +4,8 @@ import com.bilitech.yilimusic.enums.MusicStatus;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * @author 夏明
  * @version 1.0
@@ -19,4 +21,6 @@ public class MusicDto extends BaseDto {
     private String description;
 
     private FileDto file;
+
+    private List<ArtistDto> artistList;
 }
